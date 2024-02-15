@@ -9,7 +9,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e0)
 	-- Reduce Stats
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,2))
+	e2:SetDescription(aux.Stringid(id,0))
 	e2:SetCategory(CATEGORY_ATKCHANGE+CATEGORY_DEFCHANGE)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F+EFFECT_TYPE_CONTINUOUS)
 	e2:SetProperty(EFFECT_FLAG_DELAY)
@@ -21,7 +21,7 @@ function s.initial_effect(c)
 	Duel.EnableGlobalFlag(GLOBALFLAG_DETACH_EVENT)
 	-- Attach
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,0))
+	e3:SetDescription(aux.Stringid(id,1))
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e3:SetProperty(EFFECT_FLAG_DELAY)
 	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -60,7 +60,7 @@ end
 -- e2
 
 function s.filter(c)
-	return not (c:IsSetCard(0x0226) and c:IsType(TYPE_XYZ))
+	return (not (c:IsSetCard(0x0226) and c:IsType(TYPE_XYZ))) and c:IsFaceup()
 end
 
 function s.atkop(e,tp,eg,ep,ev,re,r,rp)

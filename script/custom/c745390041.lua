@@ -54,12 +54,14 @@ function s.ssop(e, tp, eg, ep, ev, re, r, rp)
 		Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)
 		-- Cannot summon except perpetuals
 		local ei1=Effect.CreateEffect(e:GetHandler())
-		ei1:SetDescription(aux.Stringid(id,1))
+		ei1:SetDescription(aux.Stringid(id,2))
 		ei1:SetType(EFFECT_TYPE_FIELD)
-		ei1:SetProperty(EFFECT_FLAG_CLIENT_HINT)
+		ei1:SetRange(LOCATION_MZONE)
+		ei1:SetProperty(EFFECT_FLAG_CLIENT_HINT+EFFECT_FLAG_PLAYER_TARGET+EFFECT_FLAG_CANNOT_DISABLE)
 		ei1:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
-		ei1:SetTargetRange(1,0)
-		ei1:SetTarget(function(e,c) return not c:IsSetCard(0x0226) end)
+		ei1:SetAbsoluteRange(tp,1,0)
+		ei1:SetReset(RESET_EVENT+RESETS_STANDARD)
+		ei1:SetTarget(function(_,c) return not c:IsSetCard(0x0226) end)
 		c:RegisterEffect(ei1)
 	end
 end
