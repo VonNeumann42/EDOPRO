@@ -55,7 +55,7 @@ function s.retg(e, tp, eg, ep, ev, re, r, rp, chk)
 	local c = e:GetHandler()
 	if chk==0 then return g:FilterCount(Card.IsAbleToRemove,nil,tp,POS_FACEUP)==1 and c:IsAbleToHand() end
 	Duel.SetOperationInfo(0,CATEGORY_REMOVE,nil,1,tp,LOCATION_DECK)
-	Duel.SetPossibleOperationInfo(0,CATEGORY_TOHAND, c, 1, tp, 0)
+	Duel.SetPossibleOperationInfo(0,CATEGORY_TOHAND, c, 1, tp, LOCATION_GRAVE)
 end
 
 function s.reop(e, tp, eg, ep, ev, re, r, rp)
